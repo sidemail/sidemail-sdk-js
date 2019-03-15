@@ -1,0 +1,27 @@
+{
+	"name": "@sidemail/sdk-js",
+	"version": "0.1.0",
+	"description": "Sidemail official node.js SDK.",
+	"main": "index.js",
+	"repository": "git@github.com:sidemail/sidemail-sdk-js.git",
+	"author": "Sidemail, Patrik Krupar",
+	"license": "MIT",
+	"dependencies": {
+		"node-fetch": "^2.3.0"
+	},
+	"files": ["index.js", "errors.js"],
+	"engines": { "node": ">=8.0.0" },
+	"prettier": {
+		"useTabs": true,
+		"jsxBracketSameLine": true,
+		"arrowParens": "always",
+		"trailingComma": "es5"
+	},
+	  "devDependencies": {
+	    "babel-eslint": "^9.0.0",
+	    "eslint": "^5.12.1",
+	    "eslint-config-airbnb": "16.1.0",
+	    "eslint-config-prettier": "^3.5.0",
+	    "prettier": "^1.16.1"
+	  }
+}
