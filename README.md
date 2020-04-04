@@ -30,23 +30,21 @@ Then, you can call `sidemail.sendEmail` method to send emails like so:
 
 ```javascript
 try {
-	const response = await sidemail.sendMail({
-		toAddress: "user@email.com",
-		fromAddress: "you@example.com",
-		fromName: "Your app",
-		templateName: "Single sign-on",
-		templateProps: { url: "https://your.app/sso?token=123" },
-	});
+  const response = await sidemail.sendMail({
+    toAddress: "user@email.com",
+    fromAddress: "you@example.com",
+    fromName: "Your app",
+    templateName: "Single sign-on",
+    templateProps: { url: "https://your.app/sso?token=123" },
+  });
 
-	// Response will contain scheduled email ID
-	console.log(
-		`An email with ID '${
-			response.id
-		}' was successfully scheduled to be send. :)`
-	);
+  // Response will contain scheduled email ID
+  console.log(
+    `An email with ID '${response.id}' was successfully scheduled to be send. :)`
+  );
 } catch (err) {
-	// Uh-oh, we have an error! You error handling logic...
-	console.error(err);
+  // Uh-oh, we have an error! You error handling logic...
+  console.error(err);
 }
 ```
 
@@ -56,11 +54,11 @@ try {
 
 ```javascript
 await sidemail.sendMail({
-	toAddress: "user@email.com",
-	fromAddress: "you@example.com",
-	fromName: "Your app",
-	templateName: "Password reset",
-	templateProps: { resetUrl: "https://your.app/reset?token=123" },
+  toAddress: "user@email.com",
+  fromAddress: "you@example.com",
+  fromName: "Your app",
+  templateName: "Password reset",
+  templateProps: { resetUrl: "https://your.app/reset?token=123" },
 });
 ```
 
@@ -68,13 +66,13 @@ await sidemail.sendMail({
 
 ```javascript
 await sidemail.sendMail({
-	toAddress: "user@email.com",
-	fromName: "Startup name",
-	fromAddress: "your@startup.com",
-	templateName: "Welcome",
-	templateProps: { firstName: "Patrik" },
-	// Deliver email in 60 minutes from now
-	scheduledAt: "2020-04-04T12:58:50.964Z",
+  toAddress: "user@email.com",
+  fromName: "Startup name",
+  fromAddress: "your@startup.com",
+  templateName: "Welcome",
+  templateProps: { firstName: "Patrik" },
+  // Deliver email in 60 minutes from now
+  scheduledAt: "2020-04-04T12:58:50.964Z",
 });
 ```
 
@@ -84,17 +82,17 @@ Useful for dynamic data where you have `n` items that you want to render in emai
 
 ```javascript
 await sidemail.sendMail({
-	toAddress: "user@email.com",
-	fromName: "Startup name",
-	fromAddress: "your@startup.com",
-	templateName: "Template with dynamic list",
-	templateProps: {
-		list: [
-			{ text: "Dynamic list" },
-			{ text: "allows you to generate email template content" },
-			{ text: "based on template props." },
-		],
-	}
+    toAddress: "user@email.com",
+    fromName: "Startup name",
+    fromAddress: "your@startup.com",
+    templateName: "Template with dynamic list",
+    templateProps: {
+        list: [
+            { text: "Dynamic list" },
+            { text: "allows you to generate email template content" },
+            { text: "based on template props." },
+        ],
+    }
 }
 });
 ```
@@ -103,11 +101,11 @@ await sidemail.sendMail({
 
 ```javascript
 await sidemail.sendMail({
-	toAddress: "user@email.com",
-	fromName: "Startup name",
-	fromAddress: "your@startup.com",
-	subject: "Testing html only custom emails :)",
-	html: "<html><body><h1>Hello world! 👋</h1><body></html>",
+  toAddress: "user@email.com",
+  fromName: "Startup name",
+  fromAddress: "your@startup.com",
+  subject: "Testing html only custom emails :)",
+  html: "<html><body><h1>Hello world! 👋</h1><body></html>",
 });
 ```
 
@@ -115,11 +113,11 @@ await sidemail.sendMail({
 
 ```javascript
 await sidemail.sendMail({
-	toAddress: "user@email.com",
-	fromName: "Startup name",
-	fromAddress: "your@startup.com",
-	subject: "Testing plain-text only custom emails :)",
-	text: "Hello world! 👋",
+  toAddress: "user@email.com",
+  fromName: "Startup name",
+  fromAddress: "your@startup.com",
+  subject: "Testing plain-text only custom emails :)",
+  text: "Hello world! 👋",
 });
 ```
 
@@ -129,20 +127,20 @@ await sidemail.sendMail({
 
 ```javascript
 try {
-	const response = await sidemail.contacts.createOrUpate({
-		emailAddress: "marry@lightning.com",
-		identifier: "123",
-		customProps: {
-			name: "Marry Lightning",
-			// ... more of your contact props ...
-		},
-	});
+  const response = await sidemail.contacts.createOrUpate({
+    emailAddress: "marry@lightning.com",
+    identifier: "123",
+    customProps: {
+      name: "Marry Lightning",
+      // ... more of your contact props ...
+    },
+  });
 
-	// Response will contain scheduled email ID
-	console.log(`Contact was '${response.status}'.`);
+  // Response will contain scheduled email ID
+  console.log(`Contact was '${response.status}'.`);
 } catch (err) {
-	// Uh-oh, we have an error! You error handling logic...
-	console.error(err);
+  // Uh-oh, we have an error! You error handling logic...
+  console.error(err);
 }
 ```
 
@@ -150,15 +148,15 @@ try {
 
 ```javascript
 try {
-	const response = await sidemail.contacts.find({
-		emailAddress: "marry@lightning.com",
-	});
+  const response = await sidemail.contacts.find({
+    emailAddress: "marry@lightning.com",
+  });
 
-	// Response will contain scheduled email ID
-	console.log(`Contact data:' ${response.contact}'.`);
+  // Response will contain scheduled email ID
+  console.log(`Contact data:' ${response.contact}'.`);
 } catch (err) {
-	// Uh-oh, we have an error! You error handling logic...
-	console.error(err);
+  // Uh-oh, we have an error! You error handling logic...
+  console.error(err);
 }
 ```
 
@@ -166,15 +164,15 @@ try {
 
 ```javascript
 try {
-	const response = await sidemail.contacts.delete({
-		emailAddress: "marry@lightning.com",
-	});
+  const response = await sidemail.contacts.delete({
+    emailAddress: "marry@lightning.com",
+  });
 
-	// Response will contain scheduled email ID
-	console.log(`Contact deleted:' ${response.deleted}'.`);
+  // Response will contain scheduled email ID
+  console.log(`Contact deleted:' ${response.deleted}'.`);
 } catch (err) {
-	// Uh-oh, we have an error! You error handling logic...
-	console.error(err);
+  // Uh-oh, we have an error! You error handling logic...
+  console.error(err);
 }
 ```
 
