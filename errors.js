@@ -6,7 +6,13 @@ class DomainError extends Error {
 	}
 }
 
-class SidemailError extends DomainError {
+class SidemailLocalError extends DomainError {
+	constructor(message) {
+		super(message);
+	}
+}
+
+class SidemailApiError extends DomainError {
 	constructor({ developerMessage, errorCode, moreInfo }) {
 		super(developerMessage);
 
@@ -17,5 +23,6 @@ class SidemailError extends DomainError {
 }
 
 module.exports = {
-	SidemailError,
+	SidemailLocalError,
+	SidemailApiError,
 };
