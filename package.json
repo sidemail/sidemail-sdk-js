@@ -1,7 +1,7 @@
 {
 	"name": "@sidemail/sdk-js",
 	"version": "0.1.4",
-	"description": "Sidemail official node.js SDK.",
+	"description": "Node.js library for the Sidemail API.",
 	"main": "index.js",
 	"repository": {
 		"type": "git",
