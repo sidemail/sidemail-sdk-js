@@ -16,7 +16,7 @@ yarn add @sidemail/sdk-js
 
 ## Usage
 
-First, the package needs to be configured with your project's API key, which you can find the Sidemail Dashboard.
+First, the package needs to be configured with your project's API key, which you can find in the Sidemail Dashboard.
 
 Here's how:
 
