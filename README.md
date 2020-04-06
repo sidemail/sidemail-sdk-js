@@ -26,21 +26,20 @@ const configureSidemail = require("@sidemail/sdk-js");
 const sidemail = configureSidemail({ apiKey: "xxxxx" });
 ```
 
-Then, you can call `sidemail.sendEmail` method to send emails like so:
+Then, you can call `sidemail.sendEmail` to send emails like so:
 
 ```javascript
 try {
-  const response = await sidemail.sendMail({
+  const response = await sidemail.sendEmail({
     toAddress: "user@email.com",
     fromAddress: "you@example.com",
     fromName: "Your app",
-    templateName: "Single sign-on",
-    templateProps: { url: "https://your.app/sso?token=123" },
+    templateName: "Welcome",
   });
 
-  // Response will contain scheduled email ID
+  // Response contains email ID
   console.log(
-    `An email with ID '${response.id}' was successfully scheduled to be send. :)`
+    `An email with ID '${response.id}' was successfully queued for sending. :)`
   );
 } catch (err) {
   // Uh-oh, we have an error! You error handling logic...
@@ -48,12 +47,26 @@ try {
 }
 ```
 
+The response will look like this:
+
+```json
+{
+  "id": "5e858953daf20f3aac50a3da",
+  "status": "queued"
+}
+```
+
+Learn more about Sidemail API:
+
+- [See all available API options](https://sidemail.io/docs/send-transactional-emails#discover-all-available-api-parameters)
+- [See all possible errors and error codes](https://sidemail.io/docs/send-transactional-emails#api-errors)
+
 ## Email sending examples
 
 ### Send password reset email template
 
 ```javascript
-await sidemail.sendMail({
+await sidemail.sendEmail({
   toAddress: "user@email.com",
   fromAddress: "you@example.com",
   fromName: "Your app",
@@ -65,7 +78,7 @@ await sidemail.sendMail({
 ### Schedule email delivery
 
 ```javascript
-await sidemail.sendMail({
+await sidemail.sendEmail({
   toAddress: "user@email.com",
   fromName: "Startup name",
   fromAddress: "your@startup.com",
@@ -81,7 +94,7 @@ await sidemail.sendMail({
 Useful for dynamic data where you have `n` items that you want to render in email. For example, items in a receipt, weekly statistic per project, new comments, etc.
 
 ```javascript
-await sidemail.sendMail({
+await sidemail.sendEmail({
     toAddress: "user@email.com",
     fromName: "Startup name",
     fromAddress: "your@startup.com",
@@ -100,7 +113,7 @@ await sidemail.sendMail({
 ### Send custom HTML email
 
 ```javascript
-await sidemail.sendMail({
+await sidemail.sendEmail({
   toAddress: "user@email.com",
   fromName: "Startup name",
   fromAddress: "your@startup.com",
@@ -112,7 +125,7 @@ await sidemail.sendMail({
 ### Send custom plain text email
 
 ```javascript
-await sidemail.sendMail({
+await sidemail.sendEmail({
   toAddress: "user@email.com",
   fromName: "Startup name",
   fromAddress: "your@startup.com",
