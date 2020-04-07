@@ -1,6 +1,6 @@
 # Sidemail Node.js library
 
-[![Try on RunKit](https://badgen.net/badge/try%20on%20runkit/sidemail/0090f0)](https://npm.runkit.com/@sidemail/sdk-js)
+[![Try on RunKit](https://badgen.net/badge/try%20on%20runkit/sidemail/0090f0)](https://npm.runkit.com/sidemail)
 
 The Sidemail Node.js library provides convenient access to the Sidemail API from applications written in server-side JavaScript.
 
@@ -9,9 +9,9 @@ The Sidemail Node.js library provides convenient access to the Sidemail API from
 Install this package with:
 
 ```sh
-npm install @sidemail/sdk-js --save
+npm install sidemail --save
 # or
-yarn add @sidemail/sdk-js
+yarn add sidemail
 ```
 
 ## Usage
@@ -22,7 +22,7 @@ Here's how:
 
 ```javascript
 // Create Sidemail instance and set your API key.
-const configureSidemail = require("@sidemail/sdk-js");
+const configureSidemail = require("sidemail");
 const sidemail = configureSidemail({ apiKey: "xxxxx" });
 ```
 
