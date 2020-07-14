@@ -32,6 +32,18 @@ class ContactMethods {
 		});
 	}
 
+	async list({ paginationCursorNext } = {}) {
+		let query = ``;
+
+		if (paginationCursorNext) {
+			query += `paginationCursorNext=${paginationCursorNext}`;
+		}
+
+		return this.performApiRequest(`contacts?${query}`, null, {
+			method: "GET",
+		});
+	}
+
 	async delete({ emailAddress } = {}) {
 		if (!emailAddress) {
 			throw new SidemailLocalError(

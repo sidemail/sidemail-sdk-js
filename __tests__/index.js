@@ -107,6 +107,40 @@ test("Find a contact", async () => {
 	);
 });
 
+test("List contacts", async () => {
+	const sidemail = configureSidemail({ apiKey: "123" });
+	sidemail.contacts.performApiRequest = jest.fn(() =>
+		Promise.resolve({ is: "ok" })
+	);
+
+	const response = await sidemail.contacts.list();
+	expect(response.is).toBe("ok");
+	expect(sidemail.contacts.performApiRequest).toHaveBeenCalledTimes(1);
+	expect(sidemail.contacts.performApiRequest).toHaveBeenCalledWith(
+		`contacts?`,
+		null,
+		expect.objectContaining({ method: "GET" })
+	);
+});
+
+test("List contacts pagination", async () => {
+	const sidemail = configureSidemail({ apiKey: "123" });
+	sidemail.contacts.performApiRequest = jest.fn(() =>
+		Promise.resolve({ is: "ok" })
+	);
+
+	const response = await sidemail.contacts.list({
+		paginationCursorNext: "123",
+	});
+	expect(response.is).toBe("ok");
+	expect(sidemail.contacts.performApiRequest).toHaveBeenCalledTimes(1);
+	expect(sidemail.contacts.performApiRequest).toHaveBeenCalledWith(
+		`contacts?paginationCursorNext=123`,
+		null,
+		expect.objectContaining({ method: "GET" })
+	);
+});
+
 test("Delete a contact", async () => {
 	const sidemail = configureSidemail({ apiKey: "123" });
 	sidemail.contacts.performApiRequest = jest.fn(() =>
