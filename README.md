@@ -149,7 +149,6 @@ try {
     },
   });
 
-  // Response will contain scheduled email ID
   console.log(`Contact was '${response.status}'.`);
 } catch (err) {
   // Uh-oh, we have an error! You error handling logic...
@@ -160,33 +159,29 @@ try {
 ### Find contact
 
 ```javascript
-try {
-  const response = await sidemail.contacts.find({
-    emailAddress: "marry@lightning.com",
-  });
-
-  // Response will contain scheduled email ID
-  console.log(`Contact data:' ${response.contact}'.`);
-} catch (err) {
-  // Uh-oh, we have an error! You error handling logic...
-  console.error(err);
-}
+const response = await sidemail.contacts.find({
+	emailAddress: "marry@lightning.com",
+});
 ```
+
+### List all contacts
+
+```javascript
+const response = await sidemail.contacts.list();
+```
+
+and to paginate
+
+```javascript
+const response = await sidemail.contacts.list({ paginationCursorNext: "123" });
+``` 
 
 ### Delete contact
 
 ```javascript
-try {
-  const response = await sidemail.contacts.delete({
-    emailAddress: "marry@lightning.com",
-  });
-
-  // Response will contain scheduled email ID
-  console.log(`Contact deleted:' ${response.deleted}'.`);
-} catch (err) {
-  // Uh-oh, we have an error! You error handling logic...
-  console.error(err);
-}
+const response = await sidemail.contacts.delete({
+	emailAddress: "marry@lightning.com",
+});
 ```
 
 ## More info
