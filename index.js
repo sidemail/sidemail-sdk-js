@@ -1,9 +1,15 @@
 const fetch = require("node-fetch");
 
+const http = require("http");
+const https = require("https");
+
 const { SidemailLocalError, SidemailApiError } = require("./errors");
 
 const DEFAULT_HOST = "https://api.sidemail.io";
 const DEFAULT_BASE_PATH = "/v1/";
+
+const httpAgent = new http.Agent({ keepAlive: true });
+const httpsAgent = new https.Agent({ keepAlive: true });
 
 class ContactMethods {
 	constructor({ performApiRequest }) {
@@ -57,6 +63,50 @@ class ContactMethods {
 	}
 }
 
+class EmailMethods {
+	constructor({ performApiRequest }) {
+		this.performApiRequest = performApiRequest;
+	}
+
+	async send(data) {
+		return this.performApiRequest("email/send", data, { method: "POST" });
+	}
+
+	async search(data) {
+		return this.performApiRequest("email/search", data, { method: "POST" });
+	}
+
+	async get(id) {
+		return this.performApiRequest(`email/${id}`, null, { method: "GET" });
+	}
+
+	async delete(id) {
+		return this.performApiRequest(`email/${id}`, null, { method: "DELETE" });
+	}
+}
+
+class ProjectMethods {
+	constructor({ performApiRequest }) {
+		this.performApiRequest = performApiRequest;
+	}
+
+	async create(data) {
+		return this.performApiRequest("project", data, { method: "POST" });
+	}
+
+	async get() {
+		return this.performApiRequest("project", null, { method: "GET" });
+	}
+
+	async update(data) {
+		return this.performApiRequest("project", data, { method: "PATCH" });
+	}
+
+	async delete() {
+		return this.performApiRequest("project", null, { method: "DELETE" });
+	}
+}
+
 class Sidemail {
 	constructor({ apiKey, host = DEFAULT_HOST }) {
 		if (!apiKey) {
@@ -67,9 +117,15 @@ class Sidemail {
 
 		this.apiKey = apiKey;
 		this.host = host;
-
 		this.performApiRequest = this.performApiRequest.bind(this);
+
 		this.contacts = new ContactMethods({
+			performApiRequest: this.performApiRequest,
+		});
+		this.email = new EmailMethods({
+			performApiRequest: this.performApiRequest,
+		});
+		this.project = new ProjectMethods({
 			performApiRequest: this.performApiRequest,
 		});
 	}
@@ -86,6 +142,9 @@ class Sidemail {
 				Accept: "application/json",
 				Authorization: "Bearer " + this.apiKey,
 				"Content-Type": "application/json",
+			},
+			agent: (_parsedURL) => {
+				return _parsedURL.protocol == "http:" ? httpAgent : httpsAgent;
 			},
 		});
 
