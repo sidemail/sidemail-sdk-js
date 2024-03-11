@@ -34,19 +34,19 @@ Then, you can call `sidemail.sendEmail` to send emails like so:
 
 ```javascript
 try {
-	const response = await sidemail.sendEmail({
-		toAddress: "user@email.com",
-		fromAddress: "you@example.com",
-		fromName: "Your app",
-		templateName: "Welcome",
-		templateProps: { foo: "bar" },
-	});
+    const response = await sidemail.sendEmail({
+        toAddress: "user@email.com",
+        fromAddress: "you@example.com",
+        fromName: "Your app",
+        templateName: "Welcome",
+        templateProps: { foo: "bar" },
+    });
 
-	// Response contains email ID
-	console.log(`Email ID '${response.id}' successfully queued for sending!`);
+    // Response contains email ID
+    console.log(`Email ID '${response.id}' successfully queued for sending!`);
 } catch (err) {
-	// Uh-oh, we have an error! You error handling logic...
-	console.error(err);
+    // Uh-oh, we have an error! You error handling logic...
+    console.error(err);
 }
 ```
 
@@ -54,8 +54,8 @@ The response will look like this:
 
 ```json
 {
-	"id": "5e858953daf20f3aac50a3da",
-	"status": "queued"
+    "id": "5e858953daf20f3aac50a3da",
+    "status": "queued"
 }
 ```
 
@@ -70,11 +70,11 @@ Learn more about Sidemail API:
 
 ```javascript
 await sidemail.sendEmail({
-	toAddress: "user@email.com",
-	fromAddress: "you@example.com",
-	fromName: "Your app",
-	templateName: "Password reset",
-	templateProps: { resetUrl: "https://your.app/reset?token=123" },
+    toAddress: "user@email.com",
+    fromAddress: "you@example.com",
+    fromName: "Your app",
+    templateName: "Password reset",
+    templateProps: { resetUrl: "https://your.app/reset?token=123" },
 });
 ```
 
@@ -82,13 +82,13 @@ await sidemail.sendEmail({
 
 ```javascript
 await sidemail.sendEmail({
-	toAddress: "user@email.com",
-	fromName: "Startup name",
-	fromAddress: "your@startup.com",
-	templateName: "Welcome",
-	templateProps: { firstName: "Patrik" },
-	// Deliver email in 60 minutes from now
-	scheduledAt: new Date(Date.now() + 60 * 60000).toISOString(),
+    toAddress: "user@email.com",
+    fromName: "Startup name",
+    fromAddress: "your@startup.com",
+    templateName: "Welcome",
+    templateProps: { firstName: "Patrik" },
+    // Deliver email in 60 minutes from now
+    scheduledAt: new Date(Date.now() + 60 * 60000).toISOString(),
 });
 ```
 
@@ -117,11 +117,11 @@ await sidemail.sendEmail({
 
 ```javascript
 await sidemail.sendEmail({
-	toAddress: "user@email.com",
-	fromName: "Startup name",
-	fromAddress: "your@startup.com",
-	subject: "Testing html only custom emails :)",
-	html: "<html><body><h1>Hello world! 👋</h1><body></html>",
+    toAddress: "user@email.com",
+    fromName: "Startup name",
+    fromAddress: "your@startup.com",
+    subject: "Testing html only custom emails :)",
+    html: "<html><body><h1>Hello world! 👋</h1><body></html>",
 });
 ```
 
@@ -129,11 +129,11 @@ await sidemail.sendEmail({
 
 ```javascript
 await sidemail.sendEmail({
-	toAddress: "user@email.com",
-	fromName: "Startup name",
-	fromAddress: "your@startup.com",
-	subject: "Testing plain-text only custom emails :)",
-	text: "Hello world! 👋",
+    toAddress: "user@email.com",
+    fromName: "Startup name",
+    fromAddress: "your@startup.com",
+    subject: "Testing plain-text only custom emails :)",
+    text: "Hello world! 👋",
 });
 ```
 
@@ -145,11 +145,11 @@ Searches emails based on the provided query and returns found email data. This e
 
 ```javascript
 const response = await sidemail.email.search({
-	query: {
-		toAddress: "john.doe@example.com",
-		status: "delivered",
-		templateProps: { foo: "bar" },
-	},
+    query: {
+        toAddress: "john.doe@example.com",
+        status: "delivered",
+        templateProps: { foo: "bar" },
+    },
 });
 
 console.log("Found emails:", response.data);
@@ -179,19 +179,19 @@ console.log("Email deleted:", response.deleted);
 
 ```javascript
 try {
-	const response = await sidemail.contacts.createOrUpdate({
-		emailAddress: "marry@lightning.com",
-		identifier: "123",
-		customProps: {
-			name: "Marry Lightning",
-			// ... more of your contact props ...
-		},
-	});
+    const response = await sidemail.contacts.createOrUpdate({
+        emailAddress: "marry@lightning.com",
+        identifier: "123",
+        customProps: {
+            name: "Marry Lightning",
+            // ... more of your contact props ...
+        },
+    });
 
-	console.log(`Contact was '${response.status}'.`);
+    console.log(`Contact was '${response.status}'.`);
 } catch (err) {
-	// Uh-oh, we have an error! You error handling logic...
-	console.error(err);
+    // Uh-oh, we have an error! You error handling logic...
+    console.error(err);
 }
 ```
 
@@ -199,7 +199,7 @@ try {
 
 ```javascript
 const response = await sidemail.contacts.find({
-	emailAddress: "marry@lightning.com",
+    emailAddress: "marry@lightning.com",
 });
 ```
 
@@ -220,7 +220,7 @@ const response = await sidemail.contacts.list({ paginationCursorNext: "123" });
 
 ```javascript
 const response = await sidemail.contacts.delete({
-	emailAddress: "marry@lightning.com",
+    emailAddress: "marry@lightning.com",
 });
 ```
 
@@ -233,7 +233,7 @@ A linked project is automatically associated with a regular project based on the
 ```javascript
 // create a linked project && save API key from `response.apiKey` to your datastore
 const response = await sidemail.project.create({
-	name: "Customer X linked project",
+    name: "Customer X linked project",
 });
 
 // user.db.save({ sidemailApiKey: response.apiKey }) ...
@@ -245,20 +245,20 @@ Updates a linked project based on the `apiKey` provided into `configureSidemail`
 
 ```javascript
 await sidemail.project.update({
-	name: "New name",
-	emailTemplateDesign: {
-		logo: {
-			sizeWidth: 50,
-			href: "https://example.com",
-			file:
-				"PHN2ZyBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLW1pdGVybGltaXQ9IjIiIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJtMTIgNS43MmMtMi42MjQtNC41MTctMTAtMy4xOTgtMTAgMi40NjEgMCAzLjcyNSA0LjM0NSA3LjcyNyA5LjMwMyAxMi41NC4xOTQuMTg5LjQ0Ni4yODMuNjk3LjI4M3MuNTAzLS4wOTQuNjk3LS4yODNjNC45NzctNC44MzEgOS4zMDMtOC44MTQgOS4zMDMtMTIuNTQgMC01LjY3OC03LjM5Ni02Ljk0NC0xMC0yLjQ2MXoiIGZpbGwtcnVsZT0ibm9uemVybyIvPjwvc3ZnPg==",
-		},
-		font: { name: "Acme" },
-		colors: { highlight: "#0000FF", isDarkModeEnabled: true },
-		unsubscribeText: "Darse de baja",
-		footerTextTransactional:
-			"You're receiving these emails because you registered for Acme Inc.",
-	},
+    name: "New name",
+    emailTemplateDesign: {
+        logo: {
+            sizeWidth: 50,
+            href: "https://example.com",
+            file:
+                "PHN2ZyBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLW1pdGVybGltaXQ9IjIiIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJtMTIgNS43MmMtMi42MjQtNC41MTctMTAtMy4xOTgtMTAgMi40NjEgMCAzLjcyNSA0LjM0NSA3LjcyNyA5LjMwMyAxMi41NC4xOTQuMTg5LjQ0Ni4yODMuNjk3LjI4M3MuNTAzLS4wOTQuNjk3LS4yODNjNC45NzctNC44MzEgOS4zMDMtOC44MTQgOS4zMDMtMTIuNTQgMC01LjY3OC03LjM5Ni02Ljk0NC0xMC0yLjQ2MXoiIGZpbGwtcnVsZT0ibm9uemVybyIvPjwvc3ZnPg==",
+        },
+        font: { name: "Acme" },
+        colors: { highlight: "#0000FF", isDarkModeEnabled: true },
+        unsubscribeText: "Darse de baja",
+        footerTextTransactional:
+            "You're receiving these emails because you registered for Acme Inc.",
+    },
 });
 ```
 
