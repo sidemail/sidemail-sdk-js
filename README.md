@@ -4,6 +4,10 @@
 
 The Sidemail Node.js library provides convenient access to the Sidemail.io API from applications written in server-side JavaScript.
 
+## Requirements
+
+Node 8 or higher.
+
 ## Installation
 
 Install this package with:
